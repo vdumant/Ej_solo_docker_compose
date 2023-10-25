@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  ejemplo:
+    image: node:16-alpine
+    container_name: ejemplo
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: /bin/sh -c "npm install && while sleep 1000; do :; done;"
+    ports:
+      - 3000:3000
+    networks:
+      - network1
+networks:
+  network1:
+    name: mi_red
+    external: true
